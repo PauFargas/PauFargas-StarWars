@@ -2,11 +2,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			
-			favorites : ['item 1', 'item 2', 'item 3' , 'item 4', 'item 5'],
+			favorites : [],
 			characters : [],
 			planets : [],
 			starships: [],
 			currentCharacter: {},
+			currentStarship: {},
+			currentPlanet: {},
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -84,6 +86,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				}else{
 					console.log("Error retrieving Details: ", response.status, response.statusText);
+				}
+
+			},
+			getStarshipDetails : async (id) => {
+				const url = "https://www.swapi.tech/api/" +"starships/" + id;
+				console.log(url)
+				const options ={
+					method : 'GET'
+				};
+				const response = await fetch(url, options);
+				
+				if (response.ok){
+					const data = await response.json();
+					console.log("data", data)					
+					console.log ("data.message", data.message)
+					console.log ("data.result: ", data.result);
+					console.log("description: ", data.result.description)
+					console.log("Properties: ", data.result.properties)
+					setStore({currentStarship : data.result})
+					
+
+				}else{
+					console.log("Error retrieving Details: ", response.status, response.statusText);
+				}
+
+			},
+			getPlanetDetails : async (id)=>{
+				const url = "https://www.swapi.tech/api/" +"planets/" + id;
+				console.log(url)
+				const options ={
+					method : 'GET'
+				};
+				const response = await fetch(url, options);
+				
+				if (response.ok){
+					const data = await response.json();
+					console.log("data", data)					
+					console.log ("data.message", data.message)
+					console.log ("data.result: ", data.result);
+					console.log("description: ", data.result.description)
+					console.log("Properties: ", data.result.properties)
+					setStore({currentPlanet : data.result})
+					
+
+				}else{
+					console.log("Error retrieving Planet Details: ", response.status, response.statusText);
 				}
 
 			},

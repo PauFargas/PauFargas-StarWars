@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 export const Starships = ()=> {
     const{ store, actions} = useContext(Context);
+    const handleAdd = (item) =>{
+        actions.setFavorites(item);
+    }
 
 
     return(
@@ -20,8 +23,8 @@ export const Starships = ()=> {
                         <div className="card-body">
                             <h5 className="card-title">{item.name}</h5>
                             <p className="card-text">{item.description}</p>
-                            <Link href="#" className="btn btn-primary">Details</Link>
-                            <Link to= "/" className="btn btn-outline-warning" style={{marginLeft : "113px"}}><i className="far fa-heart fa-lg"></i></Link>
+                            <Link to={`/starships/${item.uid}`} className="btn btn-primary">Details</Link>
+                            <button  className="btn btn-outline-warning" style={{marginLeft : "113px"}} onClick={()=>handleAdd(item.name)}><i className="far fa-heart fa-lg"></i></button>
                         </div>
                         </div>
                 </div>

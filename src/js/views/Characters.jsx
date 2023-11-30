@@ -8,6 +8,10 @@ export const Characters = ()=> {
     const handleGetDetails = (id)=>{
         actions.getCharacterDetails(id)
     }
+    const handleAdd = (item) =>{
+        actions.setFavorites(item);
+    }
+
 
 
     return(
@@ -25,7 +29,7 @@ export const Characters = ()=> {
                             <h5 className="card-title">{item.name}</h5>
                             <p className="card-text">{item.description}</p>
                             <Link to={`/characters/${item.uid}`} className="btn btn-primary" onClick={() => handleGetDetails(item.uid)}>Details</Link>
-                            <Link to= "/" className="btn btn-outline-warning" style={{marginLeft : "113px"}}><i className="far fa-heart fa-lg"></i></Link>
+                            <button className="btn btn-outline-warning" style={{marginLeft : "113px"}} onClick={()=>handleAdd(item.name)}><i className="far fa-heart fa-lg"></i></button>
                         </div>
                         </div>
                 </div>

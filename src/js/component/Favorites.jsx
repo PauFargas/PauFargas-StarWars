@@ -6,11 +6,11 @@ export const Favorites = () =>{
     const {store, actions} = useContext(Context)
 
 
-    const handleAdd = () =>{
-        actions.setFavorites("item");
-    }
+    {/*const handleAdd = () =>{
+    actions.setFavorites();*/}
+    
 
-    const handleRemove = () => {actions.removeFavorites('item 1')}
+    const handleRemove = () => {actions.removeFavorites()}
 
     
         
@@ -18,7 +18,7 @@ export const Favorites = () =>{
     return (
         <div className="container">
             <h1>Favorites</h1>
-            <button onClick={handleAdd}>Agregar</button>
+            {/*<button onClick={handleAdd}>Agregar</button>*/}
             <button onClick={handleRemove}>Desagregar</button>
             {/*<button onClick={handleGetDetails}>Detalles</button>*/}
 
